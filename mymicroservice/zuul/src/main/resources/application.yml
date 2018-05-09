@@ -3,7 +3,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://admin:admin@localhost:8888/eureka/    
+      defaultZone: http://admin:admin@localhost:8888/eureka/  
+  instance:
+    prefer-ip-address: true  
 #  instance:
 #    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
     
@@ -13,12 +15,30 @@ spring:
   application:
     name: zuul
 
-#zuul已经实现了反向代理和负载均衡的两个功能
-zuul:
-  routes:
-    api-a:
-      path: /api-a/**
-      serviceId: producer
-    api-b:
-      path: /api-b/**
-      serviceId: producer
+#zuul已经实现了反向代理和负载均衡的两个功能,http://localhost:9000/zuul/consumer/getUser直接这样访问
+#zuul:
+#  routes:
+#    api-a:
+#      path: /api-a/**
+#      serviceId: producer
+#    api-b:
+#      path: /api-b/**
+#      serviceId: producer
+
+#前提条件：
+#
+#Eureka Server注册的微服务的serviceId 在此处简称ms_id ；
+#
+#Eureka Server注册的微服务的IP 在此处简称 ms_ip ；
+#
+#Eureka Server注册的微服务的端口号 在此处简称 ms_port 。
+#
+#Zuul转发规则是：
+#
+#http://网关IP地址:网关端口号/ms_id/**
+#
+#会被转发到 =》
+#
+#http:// ms_ip: ms_port/**
+
+#http://localhost:9000/zuul/consumer/getUser --> http://localhost:8080/consumer/getUser

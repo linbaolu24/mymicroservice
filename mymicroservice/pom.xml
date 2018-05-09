@@ -106,7 +106,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-                    <!-- 如果没有该项配置，无法热部署 -->
+                    <!-- 如果没有该项配置，貌似也可以 -->
                     <!-- <fork>true</fork> -->
                 </configuration>
 			</plugin>

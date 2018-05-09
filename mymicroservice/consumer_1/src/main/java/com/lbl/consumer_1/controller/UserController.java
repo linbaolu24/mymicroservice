@@ -35,7 +35,7 @@ public class UserController {
 
 	@ApiOperation(value="获取用户信息",notes="无入参，直接调用getUser即可获取用户信息")
 	@RequestMapping(value="/getUser",method=RequestMethod.GET)
-/*	@HystrixCommand(fallbackMethod = "hasError")*/
+	@HystrixCommand(fallbackMethod = "hasError")
 	@ResponseBody
 	public String getUser() {
 
@@ -50,7 +50,7 @@ public class UserController {
 	}
 	
 	public String hasError() {
-		return "哎哟！出错了！";
+		return "哎哟！出错了!";
 	}
 
 }
