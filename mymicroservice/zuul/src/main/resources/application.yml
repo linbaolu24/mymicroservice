@@ -1,0 +1,24 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8888/eureka/    
+#  instance:
+#    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+    
+server:
+  port: 9000
+spring:
+  application:
+    name: zuul
+
+#zuul已经实现了反向代理和负载均衡的两个功能
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: producer
+    api-b:
+      path: /api-b/**
+      serviceId: producer

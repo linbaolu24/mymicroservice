@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author linbaolu 2018-05-05
  *
  */
-@FeignClient(name = "producer", fallbackFactory = HystrixClientFallbackFactory.class)//fallback=HystrixClientFallback.class
+@FeignClient(name = "producer", fallback=HystrixClientFallback.class)//fallbackFactory = HystrixClientFallbackFactory.class)//fallback=HystrixClientFallback.class
 public interface ConsumerFeignClient {
 
 	@RequestMapping(value = "/getOrder", method = RequestMethod.GET)
